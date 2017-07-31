@@ -13,26 +13,17 @@ Feature: Receive message
   Rules:
   - the inbound message must containt a bot key (which kong decodes to org and botId) as well as p/pId
 
-    Background:
-        Given there are Identity records as follows:
-            |record-key|
-            |A_RANDOM_TIN_RECORD|
-            |A_RANDOM_BRONZE_RECORD|
-            |A_RANDOM_SILVER_RECORD|
-            |A_RANDOM_GOLD_RECORD|
-          And Session records as follows:
-            | sessionId | identityId | botId | stateDate        | lastDate         | 
-            | 44        | 1          | A1    | 12/1/2016 5:00PM | 12/3/2016 2:00PM |
-          And Dialog records as follows:
-            | sessionId | identityId | botId | platform | platformId | {identity}    | [{terms}]                 | messages |
-            | 44        | 1          | A1    | FB       | 1234       | {Bill Bob...} | [{Order, 50}, {Pizza, 75} | 5        |
+   Background:
+    Given there are Identity records as follows:
+    |records|
+    | VALID_TIN_RECORD |
+    | VALID_BRONZE_RECORD|
+    | VALID_GOLD_RECORD |
+    # And there is an EventAlgo mapping as follows:
+    # |[db.getIdentity(Tin)]|
 
-    @acceptance @valid_message_received @existing_session @developing
-    Scenario: Received valid message for existing identity and session 
-        Given the new message is received within the time frame for the current session
-        When a valid new message is received
-         And identity returns the current session
-        Then save the message
-         And update the dialog counts and terms
-         And update the identity counts
-         And create a summarized event 
+  @acceptance @valid_event_received @for_testing
+  Scenario: Valid event received 
+  When a valid new event is received
+  Then save the event
+  And update Identity

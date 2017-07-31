@@ -2,27 +2,22 @@
 
 var expect = require('chai').expect;
 var identifier = null;
+var restFactory = require("../../RestFactory");
 
 module.exports =function() {
 
-    this.Given(/^Session records as follows:$/, function (table) {
+    this.Given(/^there are Identity records as follows:$/, function (table) {
          // Write code here that turns the phrase above into concrete actions
+        checkWhetherRecordsPresent();
        });
     
-     this.Given(/^$/, function () {
+    var checkWhetherRecordsPresent = function(){
+        // Call the mongoDB and check whether the table contents are present in the database MongoDB utility
+        // If not, insert the contents into the database
+        // then validate true to complete this step.
+    };
+    
+    this.When(/^a valid new event is received$/, function () {
          // Write code here that turns the phrase above into concrete actions
-       });
-    
-    this.When(/^an update is received for a non\-matching field, like:$/, function (table) {
-        table.get("Identifier") ;
-        table.get("");
-       });
-    
-    this.Then(/^the corresponding tin record should be updated$/, function () {
-       });
-    
-    this.Then(/^the corresponding bronze record should be updated$/, function () {
-       });
-    
-    
+         restFactory.post("/track","{\"event\":\"Place Order\",\"platform\":\"sms\",\"platformId\":\"111-222-3333\",\"values":{\"color\":\"red\",\"age\":\"10\"}}");
 };

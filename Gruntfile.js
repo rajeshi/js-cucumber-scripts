@@ -23,13 +23,14 @@ module.exports = function(grunt) {
       options: {
         node: true,
         strict: true,
-        globalstrict: true
+        globalstrict: true,
+        'esversion':6
       }
     },
 
     exec: {
       run_cucumber_tests: {
-        command: 'node ' + path.join('node_modules', 'cucumber',  'bin', 'cucumber.js -f pretty -t ~@ignore')
+        command: 'node ' + path.join('node_modules', 'cucumber',  'bin', 'cucumber.js -f pretty -t @developing')
       }
     }
 
@@ -42,6 +43,5 @@ module.exports = function(grunt) {
   grunt.registerTask('default', ['jshint', 'exec']);
   grunt.registerTask('chrome', ['env:chrome', 'jshint', 'exec']);
   grunt.registerTask('firefox', ['env:firefox', 'jshint', 'exec']);
-  grunt.registerTask('android', ['env:android', 'jshint', 'exec']);
 
 };

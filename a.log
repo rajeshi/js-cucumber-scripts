@@ -1,0 +1,149 @@
+Running "jshint:all" (jshint) task
+>> 4 files lint free.
+
+Running "exec:run_cucumber_tests" (exec) task
+[36m@dialogs @receive_message[39m
+Feature: Receive message
+
+  All valid messages
+  should be captured in their raw form
+  persisted
+  and then denorm'd to all related services
+
+  Why:
+  - we can run sentiment models on user's text to evaluate their state of mind
+  - in the future, we will likely get in the intent business ourselves.  having the raw data will be useful.
+  - in any consumer analytics environment, hold on to ALL the data you can, for as LONG as you can.
+
+  Rules:
+  - the inbound message must containt a bot key (which kong decodes to org and botId) as well as p/pId
+
+  [36m@acceptance @valid_message_received @existing_session @developing[39m
+  Scenario: Received valid message for existing identity and session
+    [31mGiven there are Identity records as follows:[39m
+      | [31mrecord-key            [39m |
+      | [31mA_RANDOM_TIN_RECORD   [39m |
+      | [31mA_RANDOM_BRONZE_RECORD[39m |
+      | [31mA_RANDOM_SILVER_RECORD[39m |
+      | [31mA_RANDOM_GOLD_RECORD  [39m |
+    [33mAnd Session records as follows:[39m
+      | [33msessionId[39m | [33midentityId[39m | [33mbotId[39m | [33mstateDate       [39m | [33mlastDate        [39m |
+      | [33m44       [39m | [33m1         [39m | [33mA1   [39m | [33m12/1/2016 5:00PM[39m | [33m12/3/2016 2:00PM[39m |
+    [33mAnd Dialog records as follows:[39m
+      | [33msessionId[39m | [33midentityId[39m | [33mbotId[39m | [33mplatform[39m | [33mplatformId[39m | [33m{identity}   [39m | [33m[{terms}]                [39m | [33mmessages[39m |
+      | [33m44       [39m | [33m1         [39m | [33mA1   [39m | [33mFB      [39m | [33m1234      [39m | [33m{Bill Bob...}[39m | [33m[{Order, 50}, {Pizza, 75}[39m | [33m5       [39m |
+    [33mGiven the new message is received within the time frame for the current session[39m
+    [33mWhen a valid new message is received[39m
+    [33mAnd identity returns the current session[39m
+    [33mThen save the message[39m
+    [33mAnd update the dialog counts and terms[39m
+    [33mAnd update the identity counts[39m
+    [33mAnd create a summarized event[39m
+
+Failures:
+
+1) Background:
+   Step: [1mGiven there are Identity records as follows:[22m - [90mfeatures\helloWorld.feature:17[39m
+   Step Definition: [90mfeatures\step_definitions\ApiStepDefs.js:8[39m
+   Message:
+     [31mfunction has 0 arguments, should have 1 (if synchronous or returning a promise) or 2 (if accepting a callback)[39m
+
+Warnings:
+
+1) Background:
+   Step: [1mAnd Session records as follows:[22m - [90mfeatures\helloWorld.feature:23[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Given(/^Session records as follows:$/, function (table, callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+2) Background:
+   Step: [1mAnd Dialog records as follows:[22m - [90mfeatures\helloWorld.feature:26[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Given(/^Dialog records as follows:$/, function (table, callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+3) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mGiven the new message is received within the time frame for the current session[22m - [90mfeatures\helloWorld.feature:32[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Given(/^the new message is received within the time frame for the current session$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+4) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mWhen a valid new message is received[22m - [90mfeatures\helloWorld.feature:33[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.When(/^a valid new message is received$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+5) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mAnd identity returns the current session[22m - [90mfeatures\helloWorld.feature:34[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.When(/^identity returns the current session$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+6) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mThen save the message[22m - [90mfeatures\helloWorld.feature:35[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Then(/^save the message$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+7) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mAnd update the dialog counts and terms[22m - [90mfeatures\helloWorld.feature:36[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Then(/^update the dialog counts and terms$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+8) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mAnd update the identity counts[22m - [90mfeatures\helloWorld.feature:37[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Then(/^update the identity counts$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+9) Scenario: [1mReceived valid message for existing identity and session[22m - [90mfeatures\helloWorld.feature:31[39m
+   Step: [1mAnd create a summarized event[22m - [90mfeatures\helloWorld.feature:38[39m
+   Message:
+     [33mUndefined. Implement with the following snippet:
+
+       this.Then(/^create a summarized event$/, function (callback) {
+         // Write code here that turns the phrase above into concrete actions
+         callback(null, 'pending');
+       });[39m
+
+1 scenario ([31m1 failed[39m)
+10 steps ([31m1 failed[39m, [33m9 undefined[39m)
+0m00.001s
+>> Exited with code: 1.
+Warning: Task "exec:run_cucumber_tests" failed. Use --force to continue.
+
+Aborted due to warnings.
